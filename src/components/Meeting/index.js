@@ -8,8 +8,21 @@ const Meeting = props => {
 
     const post = props.post;
     
+    const navigation = useNavigation();
+
+
     const onPress = () => {
-        console.log(post.title);
+        if (post.list_id) {
+            try {
+                database.addListItem(post.host_id, post.meeting_id);
+
+            } catch (error) {
+                console.log('Error Adding host meeting' + error)
+            }
+            alert('meeting added to host!')
+        } else {
+            navigation.navigate('Existing meeting', {post: post})
+        }
     }
 
   return (

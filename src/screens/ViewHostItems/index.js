@@ -32,13 +32,12 @@ const ViewHostMeetingScreen = props => {
       // declare empty array that will store results of SELECT
       let results = [];
       // declare variable to compute the total price
-      let total = 0.0;
       // declare transaction that will execute SELECT
       schedulerDB.transaction(txn => {
         // execute SELECT
         txn.executeSql(
 
-          `SELECT meeting.id, location, date, FROM ${meetingTableName}, ${hostMeetingsTable} WHERE meeting.id = meeting_id AND host_id = ${post.id}`,
+          `SELECT meeting.id, location, date, title FROM ${meetingTableName}, ${hostMeetingsTable} WHERE meeting.id = meeting_id AND host_id = ${post.id}`,
           [],
           // callback function to handle results from SELECT
           (_, res) => {
@@ -53,7 +52,7 @@ const ViewHostMeetingScreen = props => {
                 let meeting = res.rows.meeting(i);
                 results.push({
                   id: meeting.id,
-                  name: meeting.name,
+                  title: meeting.title,
                   date: meeting.date,
                   email: meeting.email,
                 });

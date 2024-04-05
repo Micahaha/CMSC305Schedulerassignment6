@@ -1,6 +1,8 @@
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import styles from './styles';
+import { useNavigation } from '@react-navigation/native'; 
+
 
 const database = require('../Handlers/database.js');
 
@@ -21,7 +23,7 @@ const Meeting = props => {
             }
             alert('meeting added to host!')
         } else {
-            navigation.navigate('Existing meeting', {post: post})
+            navigation.navigate('Existing Host', {post: post})
         }
     }
 
